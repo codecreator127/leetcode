@@ -1,13 +1,18 @@
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        count = 0
+        cols = list(zip(*grid))
 
-        for i in range(n):
-            for j in range(n):
-                # Check if row i and column j are equal
-                if grid[i] == [grid[k][j] for k in range(n)]:
-                    count += 1
+        print(cols)
+
+        row_counter = defaultdict(int)
+
+        for row in grid:
+            row_counter[tuple(row)] += 1
+
+        
+
+        count = 0
+        for col in cols:
+            count += row_counter[col]
 
         return count
-
